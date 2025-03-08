@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Use our free Asphalt Calculator to estimate asphalt volume, weight, and cost for your paving project. Get accurate results in seconds!">
+    <title>Asphalt Calculator | Free Asphalt Volume & Cost Estimator</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-mode">
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>AsphaltCalculator.co</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Calculator</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="theme-toggle">
+                <button id="theme-toggle-btn">
+                    <i class="fas fa-moon"></i>
+                    <span>Dark Mode</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Asphalt Calculator – Free & Accurate Estimates</h1>
+                <p>Calculate Asphalt Volume, Weight & Cost in Seconds</p>
+                <a href="#calculator" class="cta-button">Start Calculating Now</a>
+            </div>
+        </section>
+
+        <section id="calculator" class="calculator-section">
+            <div class="container">
+                <div class="calculator-container">
+                    <div class="calculator-header">
+                        <h2>Asphalt Calculator</h2>
+                        <div class="unit-toggle">
+                            <span>Units:</span>
+                            <div class="toggle-switch">
+                                <input type="checkbox" id="unit-toggle" class="toggle-input">
+                                <label for="unit-toggle" class="toggle-label">
+                                    <span class="toggle-option imperial active">Imperial</span>
+                                    <span class="toggle-slider"></span>
+                                    <span class="toggle-option metric">Metric</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="calculator-body">
+                        <div class="input-section">
+                            <h3>Project Dimensions</h3>
+                            <div class="input-group">
+                                <label for="length">Length <span class="unit-label">feet</span></label>
+                                <input type="number" id="length" min="0" step="0.1" value="10">
+                                <div class="slider-container">
+                                    <input type="range" id="length-slider" min="0" max="1000" step="0.1" value="10">
+                                </div>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="width">Width <span class="unit-label">feet</span></label>
+                                <input type="number" id="width" min="0" step="0.1" value="10">
+                                <div class="slider-container">
+                                    <input type="range" id="width-slider" min="0" max="1000" step="0.1" value="10">
+                                </div>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="depth">Depth/Thickness <span class="unit-label">inches</span></label>
+                                <input type="number" id="depth" min="0" step="0.1" value="2">
+                                <div class="slider-container">
+                                    <input type="range" id="depth-slider" min="0" max="24" step="0.1" value="2">
+                                </div>
+                            </div>
+                            
+                            <h3>Material Properties</h3>
+                            <div class="input-group">
+                                <label for="density">Asphalt Density <span class="unit-label">lbs/cubic foot</span></label>
+                                <input type="number" id="density" min="100" step="1" value="145">
+                                <div class="slider-container">
+                                    <input type="range" id="density-slider" min="100" max="200" step="1" value="145">
+                                </div>
+                            </div>
+                            
+                            <div class="input-group">
+                                <label for="cost">Cost per Ton <span class="unit-label">$</span></label>
+                                <input type="number" id="cost" min="0" step="0.01" value="100">
+                                <div class="slider-container">
+                                    <input type="range" id="cost-slider" min="0" max="500" step="0.01" value="100">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="results-section">
+                            <h3>Calculation Results</h3>
+                            <div class="result-card">
+                                <div class="result-item">
+                                    <span class="result-label">Volume:</span>
+                                    <span class="result-value" id="volume-result">0</span>
+                                    <span class="result-unit" id="volume-unit">cubic feet</span>
+                                </div>
+                                
+                                <div class="result-item">
+                                    <span class="result-label">Weight:</span>
+                                    <span class="result-value" id="weight-result">0</span>
+                                    <span class="result-unit" id="weight-unit">tons</span>
+                                </div>
+                                
+                                <div class="result-item">
+                                    <span class="result-label">Estimated Cost:</span>
+                                    <span class="result-value" id="cost-result">$0.00</span>
+                                </div>
+                                
+                                <div class="result-item">
+                                    <span class="result-label">Suggested Mix Type:</span>
+                                    <span class="result-value" id="mix-type">Standard Hot Mix Asphalt</span>
+                                </div>
+                            </div>
+                            
+                            <div class="action-buttons">
+                                <button id="print-btn" class="action-btn">
+                                    <i class="fas fa-print"></i> Print
+                                </button>
+                                <button id="share-btn" class="action-btn">
+                                    <i class="fas fa-share-alt"></i> Share
+                                </button>
+                                <button id="reset-btn" class="action-btn">
+                                    <i class="fas fa-redo"></i> Reset
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="faq-section">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How is asphalt volume calculated?</h3>
+                            <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Asphalt volume is calculated by multiplying the length, width, and depth of the area to be paved. The formula is: Volume = Length × Width × Depth. Our calculator automatically converts the units to provide accurate results.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How accurate is this asphalt calculator?</h3>
+                            <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our asphalt calculator uses industry-standard formulas and conversion factors to provide highly accurate estimates. However, actual material requirements may vary based on site conditions, compaction rates, and other factors. We recommend adding a 5-10% buffer to your calculations for waste and contingency.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>What asphalt density should I use?</h3>
+                            <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>The default density in our calculator is 145 lbs/cubic foot (2,322 kg/cubic meter), which is a common average for hot mix asphalt. However, asphalt density can vary based on the specific mix design and aggregate used. For more precise calculations, consult with your asphalt supplier for the exact density of their product.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            <h3>How do I choose the right asphalt mix type?</h3>
+                            <span class="faq-toggle"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                        <div class="faq-answer">
+                            <p>The right asphalt mix depends on several factors including climate, traffic load, and application. Our calculator suggests a mix type based on common applications, but for specific projects, consult with a paving contractor or engineer. Common types include Hot Mix Asphalt (HMA), Warm Mix Asphalt (WMA), and various specialized mixes for different performance requirements.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>AsphaltCalculator.co</h2>
+                    <p>Free & Accurate Asphalt Estimations</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Calculator</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Resources</h3>
+                        <ul>
+                            <li><a href="#">Asphalt Guide</a></li>
+                            <li><a href="#">Paving Tips</a></li>
+                            <li><a href="#">Cost Factors</a></li>
+                            <li><a href="#">FAQ</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Contact</h3>
+                        <ul>
+                            <li><a href="mailto:info@asphaltcalculator.co">info@asphaltcalculator.co</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Use</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AsphaltCalculator.co. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/calculator.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/faq.js"></script>
+</body>
+</html>
